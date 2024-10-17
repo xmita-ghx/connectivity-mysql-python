@@ -1,0 +1,34 @@
+#database--sql_connection
+#username--root
+#password--systemx
+#table--attendees <table name>
+
+1)create database sql_connection
+-----------------------------
+2)use sql_connection
+--------------------------------
+3)create  a table attendees
+----------------------------
+4)create table student(roll int primary key,name varchar(30),marks float);
+------------------------------------------------------------------------------
+5)insert record in attendees table where database is sql_connection
+----------------------------------------------------------------
+#Type-1-Essential
+#---------------------
+#inserting record in attendees table <enter table name>
+import mysql.connector as m1
+mycon=m1.connect(host="localhost",user="root",password="system",database="sql_connection")
+if mycon.is_connected():
+    print("<Connection to database established>")
+    x=mycon.cursor()
+    serial1=int(input("Enter Serial Number"))
+    name1=input("Enter Name")
+    ids1=float(input("Enter ID"))
+    sql="INSERT INTO student(serial,name,id) VALUES (%s,%s,%s)"
+    values=(serial1,name1,ids1)
+    x.execute(sql,values)
+    print("successfully inserted data")
+    mycon.commit()
+else:
+    print("Connection unseccessful!")
+mycon.close()
